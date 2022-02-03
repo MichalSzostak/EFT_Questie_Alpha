@@ -11,8 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.JOptionPane;
 
 //********************************************************************************
 //
@@ -38,7 +37,7 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        pnlStash = new javax.swing.JPanel();
         cboGamerSwitch = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         lblLevel = new javax.swing.JLabel();
@@ -46,16 +45,19 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         lstItemsOwnedModel = new DefaultListModel();
         lstItemsOwned = new javax.swing.JList<>(lstItemsOwnedModel);
-        pnlAllItems = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        lstAllItemsModel = new DefaultListModel();
-        lstAllItems = new javax.swing.JList<>();
-        lblItemInfo = new javax.swing.JLabel();
-        lblItemImage = new javax.swing.JLabel();
         pnlAllItemsControls = new javax.swing.JPanel();
         btnAddItem = new javax.swing.JButton();
         btnStashDelete = new javax.swing.JButton();
         btnRemoveItem = new javax.swing.JButton();
+        btnLVLplus = new javax.swing.JButton();
+        btnLVLminus = new javax.swing.JButton();
+        pnlAllItems = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        lstAllItemsModel = new DefaultListModel();
+        lstAllItems = new javax.swing.JList<>();
+        lblItemImage = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtAreaItemDescription = new javax.swing.JTextArea();
         pnlNotificationLog = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         txtOutNotify = new javax.swing.JTextArea();
@@ -68,7 +70,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Stash panel"));
+        pnlStash.setBorder(javax.swing.BorderFactory.createTitledBorder("Stash panel"));
 
         cboGamerSwitch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,75 +80,13 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel1.setText("Choose Gamer:");
 
-        lblLevel.setText("lvl XXX");
-
         jLabel2.setText("Items in gamer's stash:");
 
         lstItemsOwned.setModel(lstItemsOwnedModel);
         lstItemsOwned.setEnabled(false);
         jScrollPane2.setViewportView(lstItemsOwned);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(76, 76, 76))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cboGamerSwitch, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(lblLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(24, Short.MAX_VALUE))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboGamerSwitch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(lblLevel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        pnlAllItems.setBorder(javax.swing.BorderFactory.createTitledBorder("All Items panel"));
-        pnlAllItems.setMaximumSize(new java.awt.Dimension(500, 397));
-
-        lstAllItems.setModel(lstAllItemsModel);
-        lstAllItems.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        lstAllItems.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                lstAllItemsValueChanged(evt);
-            }
-        });
-        jScrollPane3.setViewportView(lstAllItems);
-
-        lblItemInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblItemInfo.setText("Items Info");
-        lblItemInfo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        lblItemInfo.setAutoscrolls(true);
-        lblItemInfo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        lblItemInfo.setFocusable(false);
-        lblItemInfo.setIconTextGap(20);
-        lblItemInfo.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-
-        lblItemImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblItemImage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        pnlAllItemsControls.setBorder(javax.swing.BorderFactory.createTitledBorder("Stash Controls"));
+        pnlAllItemsControls.setBorder(javax.swing.BorderFactory.createTitledBorder("Items Controls"));
 
         btnAddItem.setText("Add one");
         btnAddItem.addActionListener(new java.awt.event.ActionListener() {
@@ -176,10 +116,10 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(pnlAllItemsControlsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlAllItemsControlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnAddItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnStashDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRemoveItem))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnRemoveItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAddItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
         pnlAllItemsControlsLayout.setVerticalGroup(
             pnlAllItemsControlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,45 +135,127 @@ public class MainFrame extends javax.swing.JFrame {
 
         btnStashDelete.getAccessibleContext().setAccessibleName("btnStashDelete");
 
+        btnLVLplus.setText("LVL +");
+        btnLVLplus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLVLplusActionPerformed(evt);
+            }
+        });
+
+        btnLVLminus.setText("LVL -");
+        btnLVLminus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLVLminusActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlStashLayout = new javax.swing.GroupLayout(pnlStash);
+        pnlStash.setLayout(pnlStashLayout);
+        pnlStashLayout.setHorizontalGroup(
+            pnlStashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlStashLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlStashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlStashLayout.createSequentialGroup()
+                        .addGroup(pnlStashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(lblLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlStashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(pnlStashLayout.createSequentialGroup()
+                                .addComponent(btnLVLminus, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnLVLplus, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cboGamerSwitch, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(pnlStashLayout.createSequentialGroup()
+                        .addGroup(pnlStashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(pnlAllItemsControls, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        pnlStashLayout.setVerticalGroup(
+            pnlStashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlStashLayout.createSequentialGroup()
+                .addGroup(pnlStashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(cboGamerSwitch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlStashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlStashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnLVLplus)
+                        .addComponent(btnLVLminus)))
+                .addGap(8, 8, 8)
+                .addGroup(pnlStashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(pnlStashLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(pnlAllItemsControls, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pnlAllItems.setBorder(javax.swing.BorderFactory.createTitledBorder("All Items panel"));
+        pnlAllItems.setMaximumSize(new java.awt.Dimension(500, 397));
+
+        lstAllItems.setModel(lstAllItemsModel);
+        lstAllItems.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        lstAllItems.setSelectedIndex(0);
+        lstAllItems.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstAllItemsValueChanged(evt);
+            }
+        });
+        jScrollPane3.setViewportView(lstAllItems);
+
+        lblItemImage.setBackground(new java.awt.Color(51, 51, 51));
+        lblItemImage.setForeground(new java.awt.Color(0, 0, 0));
+        lblItemImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblItemImage.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lblItemImage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblItemImage.setOpaque(true);
+
+        txtAreaItemDescription.setColumns(20);
+        txtAreaItemDescription.setLineWrap(true);
+        txtAreaItemDescription.setRows(5);
+        txtAreaItemDescription.setToolTipText("");
+        txtAreaItemDescription.setWrapStyleWord(true);
+        txtAreaItemDescription.setInheritsPopupMenu(true);
+        jScrollPane1.setViewportView(txtAreaItemDescription);
+
         javax.swing.GroupLayout pnlAllItemsLayout = new javax.swing.GroupLayout(pnlAllItems);
         pnlAllItems.setLayout(pnlAllItemsLayout);
         pnlAllItemsLayout.setHorizontalGroup(
             pnlAllItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAllItemsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlAllItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlAllItemsLayout.createSequentialGroup()
-                        .addComponent(pnlAllItemsControls, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblItemInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))
-                    .addComponent(lblItemImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(pnlAllItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblItemImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlAllItemsLayout.setVerticalGroup(
             pnlAllItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAllItemsLayout.createSequentialGroup()
-                .addComponent(lblItemImage, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlAllItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlAllItemsLayout.createSequentialGroup()
-                        .addComponent(pnlAllItemsControls, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 55, Short.MAX_VALUE))
-                    .addGroup(pnlAllItemsLayout.createSequentialGroup()
-                        .addComponent(lblItemInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAllItemsLayout.createSequentialGroup()
-                .addComponent(jScrollPane3)
+                        .addComponent(lblItemImage, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
-
-        lblItemInfo.getAccessibleContext().setAccessibleName("");
 
         pnlNotificationLog.setBorder(javax.swing.BorderFactory.createTitledBorder("Event Log"));
 
         txtOutNotify.setColumns(20);
         txtOutNotify.setRows(5);
+        txtOutNotify.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         jScrollPane4.setViewportView(txtOutNotify);
 
         javax.swing.GroupLayout pnlNotificationLogLayout = new javax.swing.GroupLayout(pnlNotificationLog);
@@ -249,7 +271,7 @@ public class MainFrame extends javax.swing.JFrame {
             pnlNotificationLogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlNotificationLogLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -259,7 +281,7 @@ public class MainFrame extends javax.swing.JFrame {
         pnlQuestsMain.setLayout(pnlQuestsMainLayout);
         pnlQuestsMainLayout.setHorizontalGroup(
             pnlQuestsMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
+            .addGap(0, 496, Short.MAX_VALUE)
         );
         pnlQuestsMainLayout.setVerticalGroup(
             pnlQuestsMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -275,23 +297,26 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(pnlNotificationLog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnlAllItems, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlQuestsMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(pnlAllItems, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(pnlStash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(pnlQuestsMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnlNotificationLog, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlNotificationLog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pnlStash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pnlAllItems, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnlQuestsMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -303,29 +328,30 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void cboGamerSwitchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboGamerSwitchActionPerformed
         
-        txtOutNotify.append("\n Populating gamer's level...\n\n #cboGamerSwitchActionPerformed: [ PopulateLevel() ]\n");
+        txtOutNotify.append("\n\n Populating gamer's level...\n #cboGamerSwitchActionPerformed:  PopulateLevel() \n");
         PopulateLevel();
-        txtOutNotify.append("\n Populating gamer's stash...\n\n #cboGamerSwitchActionPerformed:  [ PopulateItemsOwned() ]\n");
+        
+        txtOutNotify.append("\n\n Populating gamer's stash...\n #cboGamerSwitchActionPerformed:   PopulateItemsOwned() \n");
         PopulateItemsOwned();
     }//GEN-LAST:event_cboGamerSwitchActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
        
         txtOutNotify.append("Window booting..."); 
-        txtOutNotify.append("\n Hello! \n Starting systems... \n Populating loot table... \n\n #WindowOpened: [ PopulateAllItemsLst() ]");        
+        txtOutNotify.append("\n Hello! \n Starting systems... \n\n Populating loot table... \n #WindowOpened:  PopulateAllItemsLst() ");        
         PopulateAllItemsLst();
-        txtOutNotify.append( "\n Updating list of gamers... \n\n #WindowOpened: [ PopulateListOfGamers() ]");
+        txtOutNotify.append( "\n\n Updating list of gamers... \n #WindowOpened:  PopulateListOfGamers() ");
         PopulateListOfGamers();
     }//GEN-LAST:event_formWindowOpened
 
     private void btnStashDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStashDeleteActionPerformed
-        txtOutNotify.append("\n Deleting item from stash...\n\n #btnAddItemActionPerformed: [ AddItem() ]");
-        DeleteSelected();        // TODO add your handling code here:        // TODO add your handling code here:
+        txtOutNotify.append("\n\n Deleting item from stash...\n #btnAddItemActionPerformed: [ AddItem() ]");
+        RemoveAll();        // TODO add your handling code here:        // TODO add your handling code here:
     }//GEN-LAST:event_btnStashDeleteActionPerformed
 
     private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
 
-        txtOutNotify.append("\n Adding item to stash...\n\n #btnAddItemActionPerformed: [ AddItem() ]");
+        txtOutNotify.append("\n\n Adding item to stash...\n #btnAddItemActionPerformed:  AddItem() ");
         AddItem();        // TODO add your handling code here:
     }//GEN-LAST:event_btnAddItemActionPerformed
 
@@ -336,9 +362,19 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_lstAllItemsValueChanged
 
     private void btnRemoveItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveItemActionPerformed
-        txtOutNotify.append("\n Removing item from stash...\n\n #btnRemoveItemActionPerformed: [ RemoveItem() ]");
-        DeleteAll();
+        txtOutNotify.append("\n\n Removing item from stash...\n #btnRemoveItemActionPerformed:  RemoveItem() ");
+        RemoveItem();
     }//GEN-LAST:event_btnRemoveItemActionPerformed
+
+    private void btnLVLplusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLVLplusActionPerformed
+        txtOutNotify.append("\n\n Adding gamer a level...\n #btnLVLplusActionPerformed:  IncreaseLevel() ");   
+        IncreaseLevel();// TODO add your handling code here:
+    }//GEN-LAST:event_btnLVLplusActionPerformed
+
+    private void btnLVLminusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLVLminusActionPerformed
+        txtOutNotify.append("\n\n Decreasing gamer's level...\n #btnLVLminusActionPerformed:  DecreaseLevel() ");   
+        DecreaseLevel();// TODO add your handling code here:
+    }//GEN-LAST:event_btnLVLminusActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -357,17 +393,18 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddItem;
+    private javax.swing.JButton btnLVLminus;
+    private javax.swing.JButton btnLVLplus;
     private javax.swing.JButton btnRemoveItem;
     private javax.swing.JButton btnStashDelete;
     private javax.swing.JComboBox<String> cboGamerSwitch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel lblItemImage;
-    private javax.swing.JLabel lblItemInfo;
     private javax.swing.JLabel lblLevel;
     private javax.swing.JList<String> lstAllItems;
     public DefaultListModel lstAllItemsModel;
@@ -377,6 +414,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel pnlAllItemsControls;
     private javax.swing.JPanel pnlNotificationLog;
     private javax.swing.JPanel pnlQuestsMain;
+    private javax.swing.JPanel pnlStash;
+    private javax.swing.JTextArea txtAreaItemDescription;
     private javax.swing.JTextArea txtOutNotify;
     // End of variables declaration//GEN-END:variables
 
@@ -426,7 +465,7 @@ public class MainFrame extends javax.swing.JFrame {
             txtOutNotify.append("\n Interpreting...");
             while (rs.next()) {
                 txtOutNotify.append("\n Applying changes...");
-                lblLevel.setText("Level:" + rs.getString("Level"));
+                lblLevel.setText("Level: " + rs.getString("Level"));
             }
         } catch (SQLException e) {
             txtOutNotify.append("\n SQL Esception!" + e);
@@ -445,10 +484,10 @@ public class MainFrame extends javax.swing.JFrame {
             
             txtOutNotify.append("\n Preparing query...");
             String queryString = "SELECT Gamers.Gamer_ID, Items.Item_Name, Gamer_Items.Amount "
-                    + " FROM Gamers "
-                    + "JOIN Gamer_Items ON Gamers.Gamer_ID = Gamer_Items.Gamer_ID "
-                    + "JOIN Items ON Gamer_Items.Item_ID = Items.Item_ID "
-                    + "WHERE Gamer_ID = " + (cboGamerSwitch.getSelectedIndex() + 1);
+                                + " FROM Gamers "
+                                + "JOIN Gamer_Items ON Gamers.Gamer_ID = Gamer_Items.Gamer_ID "
+                                + "JOIN Items ON Gamer_Items.Item_ID = Items.Item_ID "
+                                + "WHERE Gamer_ID = " + (cboGamerSwitch.getSelectedIndex() + 1);
             txtOutNotify.append("\n queryString = " + queryString);
             
             
@@ -501,16 +540,21 @@ public class MainFrame extends javax.swing.JFrame {
             String queryString = "SELECT Item_Description, Image_Source "
                     + " FROM Items "
                     + "WHERE Item_ID = " + (selectedItemID + 1);
-
+            txtOutNotify.append("\n queryString = " + queryString );
+            
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(queryString);//wildcard
-
+            
             while (rs.next()) {
-                String itemDescription = rs.getString("Item_Description");
-                lblItemInfo.setText("<html>" + itemDescription + "</html>");
+                String itemDescription =  rs.getString("Item_Description");
+                txtOutNotify.append("\n Setting description...");
+                txtAreaItemDescription.setText(itemDescription);
+                txtOutNotify.append("\n Setting icon...");
                 String itemLocation = "C:\\Users\\micha\\Documents\\Coding projects\\NetBeansProjects\\EFT_Questie_Alpha_1.0\\src\\Images\\" + rs.getString("Image_Source");
                 ImageIcon icon = new ImageIcon(itemLocation);
                 lblItemImage.setIcon(icon);
+                txtOutNotify.append("\n Success! \n");
+                
 
             }
         } catch (SQLException e) {
@@ -540,7 +584,8 @@ public class MainFrame extends javax.swing.JFrame {
             if (rs.next() == false) 
             {
                 txtOutNotify.append("\n No results found, creating new entry...");
-                txtOutNotify.append("\n Preparing query...");
+                
+                txtOutNotify.append("\n Preparing insert query...");
                 queryString = " INSERT INTO Gamer_Items (Gamer_ID, Item_ID, Amount)"
                             + " VALUES ("+ (cboGamerSwitch.getSelectedIndex() + 1) + " , " + (lstAllItems.getSelectedIndex() + 1) + ", 1)";
                 txtOutNotify.append("\n queryString = " + queryString);
@@ -601,7 +646,7 @@ public class MainFrame extends javax.swing.JFrame {
         }        // TODO add your handling code here:
     }
     
-    public void DeleteAll() {
+    public void RemoveItem() {
         try {
             
             txtOutNotify.append("\n Connecting to database...");
@@ -621,25 +666,16 @@ public class MainFrame extends javax.swing.JFrame {
             
             if (rs.next() == false) 
             {
-                txtOutNotify.append("\n No results found, creating new entry...");
-                txtOutNotify.append("\n Preparing query...");
-                queryString = " INSERT INTO Gamer_Items (Gamer_ID, Item_ID, Amount)"
-                            + " VALUES ("+ (cboGamerSwitch.getSelectedIndex() + 1) + " , " + (lstAllItems.getSelectedIndex() + 1) + ", 1)";
-                txtOutNotify.append("\n queryString = " + queryString);
+                txtOutNotify.append("\n Item not found...");
+                txtOutNotify.append("\n Warning issued...");
+                JOptionPane.showMessageDialog(rootPane, "This item is not in stash.");
                 
-                txtOutNotify.append("\n Executing...");
-                Statement stmt2 = null;
-                stmt2 = con.createStatement();
-                stmt2.executeUpdate(queryString);
-                
-                txtOutNotify.append("\n Re-populating gamer's stash...\n\n #AddItem():  [ PopulateItemsOwned() ]\n");
-                PopulateItemsOwned();
 
             } 
             else 
             {
-                txtOutNotify.append("\n Item's found in stash, increasing amount...");
-                txtOutNotify.append("\n Preparing search query...");
+                txtOutNotify.append("\n Item's found in stash, decreasing amount...");
+                txtOutNotify.append("\n Preparing select query...");
                 queryString = " SELECT Amount "
                             + " FROM Gamer_Items "
                             + " WHERE Gamer_ID = " + (cboGamerSwitch.getSelectedIndex() + 1) + " AND Item_ID = " + (lstAllItems.getSelectedIndex() + 1);
@@ -656,21 +692,29 @@ public class MainFrame extends javax.swing.JFrame {
                     String tempAmount = rs.getString("Amount");
                     txtOutNotify.append("\n Parsing...");
                     int tempAmountInt = Integer.parseInt(tempAmount);
-                    txtOutNotify.append("\n Incrementing...");
-                    tempAmountInt += 1;
+                    txtOutNotify.append("\n Decrementing...");
+                    if(tempAmountInt>0)
+                    {
+                        tempAmountInt -= 1;
+                        txtOutNotify.append("\n Preparing update query...");
+                        queryString = "UPDATE Gamer_Items "
+                                    + " SET Amount = " + tempAmountInt
+                                    + " WHERE Gamer_ID = " + (cboGamerSwitch.getSelectedIndex() +1) + " AND Item_ID = " + (lstAllItems.getSelectedIndex() + 1);
+                        txtOutNotify.append("\n queryString = " + queryString);
                     
+                        txtOutNotify.append("\n Executing...");
+                        Statement stmt3 = null;
+                        stmt3 = con.createStatement();
+                        int executeUpdate = stmt3.executeUpdate(queryString);
+                        txtOutNotify.append("\n Success!\n int executeUpdate: " + executeUpdate + "\n");
+                    }
+                    else
+                    {
+                        txtOutNotify.append("\n Amount already 0! Aborting...");
+                        tempAmountInt=tempAmountInt;
+                    }
+                                        
                     
-                    txtOutNotify.append("\n Preparing update query...");
-                    queryString = "UPDATE Gamer_Items "
-                            + " SET Amount = " + tempAmountInt
-                            + " WHERE Gamer_ID = " + (cboGamerSwitch.getSelectedIndex() +1) + " AND Item_ID = " + (lstAllItems.getSelectedIndex() + 1);
-                    txtOutNotify.append("\n queryString = " + queryString);
-                    
-                    txtOutNotify.append("\n Executing...");
-                    Statement stmt3 = null;
-                    stmt3 = con.createStatement();
-                    int executeUpdate = stmt3.executeUpdate(queryString);
-                    txtOutNotify.append("\n Success!\n int executeUpdate: " + executeUpdate + "\n");
                 }
                 
                 txtOutNotify.append("\n Re-populating gamer's stash...\n\n #AddItem():  [ PopulateItemsOwned() ]\n");
@@ -683,7 +727,7 @@ public class MainFrame extends javax.swing.JFrame {
         }        // TODO add your handling code here:
     }
     
-    public void DeleteSelected(){
+    public void RemoveAll(){
         try 
         {
             
@@ -711,6 +755,120 @@ public class MainFrame extends javax.swing.JFrame {
             System.out.println("SQL exception occured" + e);
         }        // TODO add your handling code here:
     }
+    
+    public void IncreaseLevel(){
+        
+        var tempLevel = 0;
+        try 
+            {
+                txtOutNotify.append("\n Connecting to database...");
+                Connection con = DriverManager.getConnection("jdbc:ucanaccess://data/EFT_Questie_DB.accdb");
+                
+                txtOutNotify.append("\n Preparing SELECT query...");
+                String queryString = "SELECT Level FROM Gamers WHERE Gamer_ID = " + (cboGamerSwitch.getSelectedIndex() + 1);
+                 txtOutNotify.append("\n queryString = " + queryString);
+                
+                txtOutNotify.append("\n Executing...");
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery (queryString) ;//wildcard
+                
+                while (rs.next()) 
+                {
+                    tempLevel = rs.getInt("Level");
+                    tempLevel = tempLevel + 1;
+                }
+            }
+         catch(SQLException e)
+            {
+                
+                System.out.println("SQL exception occured" + e);
+            }
+        
+        try 
+        {
+            
+            txtOutNotify.append("\n Connecting to database...");
+            Connection con = DriverManager.getConnection("jdbc:ucanaccess://data/EFT_Questie_DB.accdb");
+            txtOutNotify.append("\n Preparing UPDATE query...");
+            String queryString  = " UPDATE Gamers"
+                                + " SET Level = " +  tempLevel
+                                + " WHERE Gamer_ID = "+ (cboGamerSwitch.getSelectedIndex() + 1);
+            txtOutNotify.append("\n queryString = " + queryString);
+            
+            txtOutNotify.append("\n Executing...");
+            Statement stmt = null;
+            stmt = con.createStatement();
+            int executeUpdate = stmt.executeUpdate(queryString);
+            txtOutNotify.append("\n Success!\n int executeUpdate: " + executeUpdate + "\n");
+            
+            txtOutNotify.append("\n\n Populating gamer's level...\n #IncreaseLevel():  PopulateLevel() ");   
+            PopulateLevel();
+            
+        } catch (SQLException e) {
+            System.out.println("SQL exception occured" + e);
+        }        // TODO add your handling code here:
+    }
+    
+    public void DecreaseLevel(){
+        
+        
+        var tempLevel = 0;
+        try 
+            {
+                txtOutNotify.append("\n Connecting to database...");
+                Connection con = DriverManager.getConnection("jdbc:ucanaccess://data/EFT_Questie_DB.accdb");
+                
+                txtOutNotify.append("\n Preparing SELECT query...");
+                String queryString = "SELECT Level FROM Gamers WHERE Gamer_ID = " + (cboGamerSwitch.getSelectedIndex() + 1);
+                 txtOutNotify.append("\n queryString = " + queryString);
+                
+                txtOutNotify.append("\n Executing...");
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery (queryString) ;//wildcard
+                
+                while (rs.next()) 
+                {
+                    tempLevel = rs.getInt("Level");
+                    if(tempLevel>1){
+                        tempLevel = tempLevel - 1;
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(rootPane, "Level 1 is the lowest.");
+                    }
+                }
+            }
+         catch(SQLException e)
+            {
+                
+                System.out.println("SQL exception occured" + e);
+            }
+        
+        try 
+        {
+            
+            txtOutNotify.append("\n Connecting to database...");
+            Connection con = DriverManager.getConnection("jdbc:ucanaccess://data/EFT_Questie_DB.accdb");
+            txtOutNotify.append("\n Preparing UPDATE query...");
+            String queryString  = " UPDATE Gamers"
+                                + " SET Level = " +  tempLevel
+                                + " WHERE Gamer_ID = "+ (cboGamerSwitch.getSelectedIndex() + 1);
+            txtOutNotify.append("\n queryString = " + queryString);
+            
+            txtOutNotify.append("\n Executing...");
+            Statement stmt = null;
+            stmt = con.createStatement();
+            int executeUpdate = stmt.executeUpdate(queryString);
+            txtOutNotify.append("\n Success!\n int executeUpdate: " + executeUpdate + "\n");
+            
+            txtOutNotify.append("\n\n Populating gamer's level...\n #IncreaseLevel():  PopulateLevel() ");   
+            PopulateLevel();
+            
+        } catch (SQLException e) {
+            System.out.println("SQL exception occured" + e);
+        }        // TODO add your
+    }
+    
     
     // QUESTS ******************************************************************
     
